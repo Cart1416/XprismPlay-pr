@@ -297,7 +297,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
 		category: 'creation'
 	},
 
-	// ARCADE (11)
+	// ARCADE (14)
 	{
 		id: 'first_arcade',
 		name: 'Feeling Lucky',
@@ -343,6 +343,16 @@ export const ACHIEVEMENTS: AchievementDef[] = [
 		name: 'Cloud 9',
 		description: 'Reveal all 22 safe tiles with 3 mines and cash out',
 		icon: 'cloud.png',
+		difficulty: 'legendary',
+		cashReward: 50000,
+		gemReward: 150,
+		category: 'arcade'
+	},
+	{
+		id: 'tower_god',
+		name: 'Tower God',
+		description: 'Get to floor 10 on hard mode and cash out',
+		icon: '../facedev/bliptext.png',
 		difficulty: 'legendary',
 		cashReward: 50000,
 		gemReward: 150,
