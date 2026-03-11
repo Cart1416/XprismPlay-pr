@@ -24,7 +24,7 @@
 		onSuccess
 	} = $props<{
 		open?: boolean;
-		type: 'BUY' | 'SELL';
+		type: 'BUY' | 'SELL' | 'BURN';
 		coin: any;
 		userHolding?: number;
 		onSuccess?: () => void;
@@ -36,6 +36,14 @@
 
 	let numericAmount = $derived(parseFloat(amount) || 0);
 	let currentPrice = $derived(coin.currentPrice || 0);
+
+
+	let poolTokensAfterBurn = $derived(() => {
+		if (type !== 'BURN' || numericAmount <= 0) return numericAmount;
+		const poolCoin = Number(coin.poolCoinAmount);
+		let finalTokenCount = poolCoin - numericAmount;
+		if (finalTokenCount != 0) return finalTokenCount;
+	});
 
 	let maxSellableAmount = $derived(
 		type === 'SELL' && coin
@@ -278,7 +286,7 @@
 					<HugeiconsIcon icon={Loading03Icon} class="h-4 w-4 animate-spin" />
 					Processing...
 				{:else}
-					{type === 'BUY' ? 'Buy' : 'Sell'} {coin.symbol}
+					{type === 'BUY' ? 'Buy' : type === 'SELL' ? 'Sell' : 'Burn'} {coin.symbol}
 				{/if}
 			</Button>
 		</Dialog.Footer>
