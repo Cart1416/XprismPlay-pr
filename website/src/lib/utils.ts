@@ -364,23 +364,9 @@ export function timeToLocal(originalTime: number): number {
 	);
 }
 
-export const PRESTIGE_COSTS = {
-	1: calcPrestigePrice(1),
-	2: calcPrestigePrice(2),
-	3: calcPrestigePrice(3),
-	4: calcPrestigePrice(4),
-	5: calcPrestigePrice(5),
-	6: calcPrestigePrice(6),
-	7: calcPrestigePrice(7),
-	8: calcPrestigePrice(8),
-	9: calcPrestigePrice(9),
-	10: calcPrestigePrice(10),
-	11: calcPrestigePrice(11),
-	12: calcPrestigePrice(12),
-	13: calcPrestigePrice(13),
-	14: calcPrestigePrice(14),
-	15: calcPrestigePrice(15),
-} as const;
+export const PRESTIGE_COSTS = Object.fromEntries(
+    Array.from({ length: getMaxPrestigeLevel() }, (_, i) => [i + 1, calcPrestigePrice(i + 1)])
+) as Record<number, number>;
 
 export const PRESTIGE_NAMES = {
 	1: 'Prestige I',
